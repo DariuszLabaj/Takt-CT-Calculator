@@ -1,22 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Kalkulator TAKT / CT - obliczenia tempa produkcji i zdolności rocznej." />
     <title>Kalkulator TAKT / CT</title>
     <link rel="stylesheet" href="css/material.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <main class="app">
-        <header>
+        <header class="app-header">
+            <div>
             <h1>Kalkulator TAKT / CT</h1>
-            <p class="subtitle">Dwa niezależne obliczenia: wymagany TAKT i dopuszczalny CT oraz zdolność produkcyjna maszyny</p>
+            <p class="subtitle">
+                Dwa niezależne obliczenia: wymagany TAKT i dopuszczalny CT oraz zdolność produkcyjna maszyny
+            </p>
+            </div>
+
+            <div class="share-panel" aria-label="Udostępnianie kalkulatora">
+                <button id="shareButton" class="md-button md-button--filled" type="button">
+                    Udostępnij
+                </button>
+                <button id="qrButton" class="md-button md-button--outlined" type="button">
+                    Pokaż QR
+                </button>
+            </div>
         </header>
+
+        <div id="shareStatus" class="share-status" role="status" aria-live="polite"></div>
+
         <section class="grid">
             <article class="card">
-                <h2>1  •  TK (ZAMÓWIENIE ROCZNE) → TAKT I LIMIT CT</h2>
-                <p class="card-description">Wpisz stałe TK klienta i parametry czasu. Wyniki dotyczą wymaganego tempa, nie zmierzonego CT maszyny.</p>
+                <h2>1 • TK (ZAMÓWIENIE ROCZNE) → TAKT I LIMIT CT</h2>
+                <p class="card-description">
+                    Wpisz stałe TK klienta i parametry czasu. Wyniki dotyczą wymaganego tempa, nie zmierzonego CT maszyny.
+                </p>
+
                 <div class="section-title">Dane wejściowe</div>
                 <div class="form-grid">
                     <div>
@@ -24,26 +44,31 @@
                         <input id="demand" type="number" min="1" step="1" value="10000">
                         <div class="unit">szt./rok</div>
                     </div>
+
                     <div>
                         <label for="days1">Liczba dni roboczych</label>
                         <input id="days1" type="number" min="0" step="1" value="251">
                         <div class="unit">dni/rok</div>
                     </div>
+
                     <div>
                         <label for="shifts1">Liczba zmian na dzień</label>
                         <input id="shifts1" type="number" min="0" step="0.1" value="3">
                         <div class="unit">zmiany/dzień</div>
                     </div>
+
                     <div>
                         <label for="hours1">Godziny pracy na zmianę</label>
                         <input id="hours1" type="number" min="0" step="0.1" value="7.5">
                         <div class="unit">h/zmianę</div>
                     </div>
+
                     <div>
                         <label for="oee1">Wydajność OEE</label>
                         <input id="oee1" type="number" min="0" max="100" step="0.1" value="85">
                         <div class="unit">%</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Łącznie godzin pracy na dzień</div>
@@ -51,6 +76,7 @@
                         <div class="result-value" id="sumWorkhours1">-</div>
                     </div>
                 </div>
+
                 <div class="section-title">Wynik</div>
                 <div class="results">
                     <div class="result">
@@ -60,13 +86,17 @@
                         </div>
                         <div class="result-value" id="effectiveHours1">-</div>
                     </div>
+
                     <div class="result highlight">
                         <div>
                             <div class="result-main">Limit CT przy danym OEE</div>
-                            <div class="result-description">limit planistyczny = efektywny czas / TK; nie jest rzeczywistym CT.</div>
+                            <div class="result-description">
+                                limit planistyczny = efektywny czas / TK; nie jest rzeczywistym CT.
+                            </div>
                         </div>
                         <div class="result-value" id="ctLimitSec">-</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Limit CT przy danym OEE</div>
@@ -74,13 +104,15 @@
                         </div>
                         <div class="result-value" id="ctLimitMin">-</div>
                     </div>
+                    
                     <div class="result">
                         <div>
-                            <div class="result-main">Limit planistyczny w minutach</div>
+                            <div class="result-main">Takt nominalny</div>
                             <div class="result-description">Dostępny czas nominalny / TK</div>
                         </div>
                         <div class="result-value" id="taktNominal">-</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Rzeczywisty CT maszyny</div>
@@ -89,12 +121,22 @@
                         <div class="result-value">wymaga pomiaru</div>
                     </div>
                 </div>
-                <div class="formula">Limit CT [s/szt.] = dni × zmiany × h/zmianę × OEE × 3600 / TK [szt./rok]</div>
-                <div class="note">TK oznacza stałe zamówienie klienta [szt./rok]. CT to wpisany lub zmierzony czas stanowiska. Więcej zmian / wyższe OEE zwiększa dopuszczalny CT, ale nie zmienia TK ani fizycznego CT maszyny. </div>
+
+                <div class="formula">
+                    Limit CT [s/szt.] = dni × zmiany × h/zmianę × OEE × 3600 / TK [szt./rok]
+                </div>
+                <div class="note">
+                    TK oznacza stałe zamówienie klienta [szt./rok]. CT to wpisany lub zmierzony czas stanowiska.
+                    Więcej zmian / wyższe OEE zwiększa dopuszczalny CT, ale nie zmienia TK ani fizycznego CT maszyny. 
+                </div>
             </article>
+
             <article class="card">
-                <h2>2  •  CT MASZYNY → ZDOLNOŚĆ ROCZNA</h2>
-                <p class="card-description">Wpisz zmierzony CT i parametry produkcji. Sprawdź liczbę możliwych sztuk/rok.</p>
+                <h2>2 • CT MASZYNY → ZDOLNOŚĆ ROCZNA</h2>
+                <p class="card-description">
+                    Wpisz zmierzony CT i parametry produkcji. Sprawdź liczbę możliwych sztuk/rok.
+                </p>
+
                 <div class="section-title">Dane wejściowe</div>
                 <div class="form-grid">
                     <div>
@@ -102,26 +144,31 @@
                         <input id="ct" type="number" min="0.1" step="0.1" value="6">
                         <div class="unit">s/szt.</div>
                     </div>
+
                     <div>
                         <label for="days2">Liczba dni roboczych</label>
                         <input id="days2" type="number" min="0" step="1" value="251">
                         <div class="unit">dni/rok</div>
                     </div>
+
                     <div>
                         <label for="shifts2">Liczba zmian na dzień</label>
                         <input id="shifts2" type="number" min="0" step="0.1" value="3">
                         <div class="unit">zmiany/dzień</div>
                     </div>
+
                     <div>
                         <label for="hours2">Godziny pracy na zmianę</label>
                         <input id="hours2" type="number" min="0" step="0.1" value="7.5">
                         <div class="unit">h/zmianę</div>
                     </div>
+
                     <div>
                         <label for="oee2">Wydajność OEE</label>
                         <input id="oee2" type="number" min="0" max="100" step="0.1" value="85">
                         <div class="unit">%</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Łącznie godzin pracy na dzień</div>
@@ -129,6 +176,7 @@
                         <div class="result-value" id="sumWorkhours2">-</div>
                     </div>
                 </div>
+
                 <div class="section-title">Wynik</div>
                 <div class="results">
                     <div class="result">
@@ -138,6 +186,7 @@
                         </div>
                         <div class="result-value" id="effectiveHours2">—</div>
                     </div>
+
                     <div class="result highlight">
                         <div>
                             <div class="result-main">Możliwa produkcja roczna</div>
@@ -145,6 +194,7 @@
                         </div>
                         <div class="result-value" id="annualProduction">—</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Średnio na dzień</div>
@@ -152,6 +202,7 @@
                         </div>
                         <div class="result-value" id="dailyProduction">—</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Średnio na zmianę</div>
@@ -159,6 +210,7 @@
                         </div>
                         <div class="result-value" id="shiftProduction">—</div>
                     </div>
+
                     <div class="result">
                         <div>
                             <div class="result-main">Efektywny czas / dobrą szt.</div>
@@ -167,13 +219,46 @@
                         <div class="result-value" id="effectiveCt">—</div>
                     </div>
                 </div>
-                <div class="formula">Produkcja [szt./rok] = dni × zmiany × h/zmianę × OEE × 3600 / CT</div>
-                <div class="note">CT jest czasem cyklu stanowiska. OEE uwzględnia dostępność, wydajność i jakość w przyjętym modelu obliczeniowym.</div>
+
+                <div class="formula">
+                    Produkcja [szt./rok] = dni × zmiany × h/zmianę × OEE × 3600 / CT
+                </div>
+                <div class="note">
+                    CT jest czasem cyklu stanowiska. OEE uwzględnia dostępność, wydajność i jakość w przyjętym modelu obliczeniowym.
+                </div>
             </article>
         </section>
-        <footer>Obliczenia wykonywane lokalnie w przeglądarce. Strona nie wymaga serwera ani bazy danych.</footer>
+
+        <footer>
+            Obliczenia wykonywane lokalnie w przeglądarce. Dane formularza są zapisywane lokalnie na urządzeniu.
+        </footer>
     </main>
-    <script src="script.js">
-    </script>
+    
+    <dialog id="qrDialog" class="qr-dialog">
+        <div class="qr-dialog__header">
+            <div>
+                <h2>Udostępnij konfigurację</h2>
+                <p>QR zawiera link z aktualnymi danymi kalkulatora.</p>
+            </div>
+            <button id="closeQrButton" class="md-button md-button--text" type="button" aria-label="Zamknij">
+                Zamknij
+            </button>
+        </div>
+
+        <div id="qrCode" class="qr-code" aria-label="Kod QR z linkiem do konfiguracji"></div>
+
+        <div class="share-url-row">
+            <input id="shareUrl" type="text" readonly aria-label="Link do udostępnienia">
+            <button id="copyLinkButton" class="md-button md-button--outlined" type="button">
+                Kopiuj link
+            </button>
+        </div>
+    </dialog>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+            integrity="sha512-CNgM2pY5VJf3QkqgF5kW7ZJ5hVj0n8J8c1j8tQxQ0d0QqkX2k6yZ6hQ7w5h4l6JQY8q4r3M2M9V6mK6l2w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
 </body>
 </html>
