@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kalkulator TAKT / CT</title>
+    <link rel="stylesheet" href="css/material.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="app">
+        <header>
+            <h1>Kalkulator TAKT / CT</h1>
+            <p class="subtitle">Dwa niezależne obliczenia: wymagany TAKT i dopuszczalny CT oraz zdolność produkcyjna maszyny</p>
+        </header>
+        <section class="grid">
+            <article class="card">
+                <h2>1  •  TK (ZAMÓWIENIE ROCZNE) → TAKT I LIMIT CT</h2>
+                <p class="card-description">Wpisz stałe TK klienta i parametry czasu. Wyniki dotyczą wymaganego tempa, nie zmierzonego CT maszyny.</p>
+                <div class="section-title">Dane wejściowe</div>
+                <div class="form-grid">
+                    <div>
+                        <label for="demand">TK – wymagania klienta</label>
+                        <input id="demand" type="number" min="1" step="1" value="10000">
+                        <div class="unit">szt./rok</div>
+                    </div>
+                    <div>
+                        <label for="days1">Liczba dni roboczych</label>
+                        <input id="days1" type="number" min="0" step="1" value="251">
+                        <div class="unit">dni/rok</div>
+                    </div>
+                    <div>
+                        <label for="shifts1">Liczba zmian na dzień</label>
+                        <input id="shifts1" type="number" min="0" step="0.1" value="1">
+                        <div class="unit">zmiany/dzień</div>
+                    </div>
+                    <div>
+                        <label for="hours1">Godziny pracy na zmianę</label>
+                        <input id="hours1" type="number" min="0" step="0.1" value="7.5">
+                        <div class="unit">h/zmianę</div>
+                    </div>
+                    <div>
+                        <label for="oee1">Wydajność OEE</label>
+                        <input id="oee1" type="number" min="0" max="100" step="0.1" value="85">
+                        <div class="unit">%</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Łącznie godzin pracy na dzień</div>
+                        </div>
+                        <div class="result-value" id="sumWorkhours1">-</div>
+                    </div>
+                </div>
+                <div class="section-title">Wynik</div>
+                <div class="results">
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Efektywny czas produkcji w roku</div>
+                            <div class="result-description">dni × zmiany × godziny × OEE</div>
+                        </div>
+                        <div class="result-value" id="effectiveHours1">-</div>
+                    </div>
+                    <div class="result highlight">
+                        <div>
+                            <div class="result-main">Limit CT przy danym OEE</div>
+                            <div class="result-description">limit planistyczny = efektywny czas / TK; nie jest rzeczywistym CT.</div>
+                        </div>
+                        <div class="result-value" id="ctLimitSec">-</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Limit CT przy danym OEE</div>
+                            <div class="result-description">Limit planistyczny w minutach</div>
+                        </div>
+                        <div class="result-value" id="ctLimitMin">-</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Limit planistyczny w minutach</div>
+                            <div class="result-description">Dostępny czas nominalny / TK</div>
+                        </div>
+                        <div class="result-value" id="taktNominal">-</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Rzeczywisty CT maszyny</div>
+                            <div class="result-description">Nie można go obliczyć z samego popytu i OEE.</div>
+                        </div>
+                        <div class="result-value">wymaga pomiaru</div>
+                    </div>
+                </div>
+                <div class="formula">Limit CT [s/szt.] = dni × zmiany × h/zmianę × OEE × 3600 / TK [szt./rok]</div>
+                <div class="note">TK oznacza stałe zamówienie klienta [szt./rok]. CT to wpisany lub zmierzony czas stanowiska. Więcej zmian / wyższe OEE zwiększa dopuszczalny CT, ale nie zmienia TK ani fizycznego CT maszyny. </div>
+            </article>
+            <article class="card">
+                <h2>2  •  CT MASZYNY → ZDOLNOŚĆ ROCZNA</h2>
+                <p class="card-description">Wpisz zmierzony CT i parametry produkcji. Sprawdź liczbę możliwych sztuk/rok.</p>
+                <div class="section-title">Dane wejściowe</div>
+                <div class="form-grid">
+                    <div>
+                        <label for="ct">Czas cyklu CT</label>
+                        <input id="ct" type="number" min="0.1" step="0.1" value="60">
+                        <div class="unit">s/szt.</div>
+                    </div>
+                    <div>
+                        <label for="days2">Liczba dni roboczych</label>
+                        <input id="days2" type="number" min="0" step="1" value="251">
+                        <div class="unit">dni/rok</div>
+                    </div>
+                    <div>
+                        <label for="shifts2">Liczba zmian na dzień</label>
+                        <input id="shifts2" type="number" min="0" step="0.1" value="2">
+                        <div class="unit">zmiany/dzień</div>
+                    </div>
+                    <div>
+                        <label for="hours2">Godziny pracy na zmianę</label>
+                        <input id="hours2" type="number" min="0" step="0.1" value="7.5">
+                        <div class="unit">h/zmianę</div>
+                    </div>
+                    <div>
+                        <label for="oee2">Wydajność OEE</label>
+                        <input id="oee2" type="number" min="0" max="100" step="0.1" value="100">
+                        <div class="unit">%</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Łącznie godzin pracy na dzień</div>
+                        </div>
+                        <div class="result-value" id="sumWorkhours2">-</div>
+                    </div>
+                </div>
+                <div class="section-title">Wynik</div>
+                <div class="results">
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Efektywny czas produkcji w roku</div>
+                            <div class="result-description">dni × zmiany × godziny × OEE</div>
+                        </div>
+                        <div class="result-value" id="effectiveHours2">—</div>
+                    </div>
+                    <div class="result highlight">
+                        <div>
+                            <div class="result-main">Możliwa produkcja roczna</div>
+                            <div class="result-description">Maksymalna liczba pełnych sztuk rocznie</div>
+                        </div>
+                        <div class="result-value" id="annualProduction">—</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Średnio na dzień</div>
+                            <div class="result-description">produkcja roczna / dni</div>
+                        </div>
+                        <div class="result-value" id="dailyProduction">—</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Średnio na zmianę</div>
+                            <div class="result-description">produkcja roczna / dni / zmiany</div>
+                        </div>
+                        <div class="result-value" id="shiftProduction">—</div>
+                    </div>
+                    <div class="result">
+                        <div>
+                            <div class="result-main">Efektywny czas / dobrą szt.</div>
+                            <div class="result-description">CT nominalny / OEE; spada, gdy OEE wzrasta.</div>
+                        </div>
+                        <div class="result-value" id="effectiveCt">—</div>
+                    </div>
+                </div>
+                <div class="formula">Produkcja [szt./rok] = dni × zmiany × h/zmianę × OEE × 3600 / CT</div>
+                <div class="note">CT jest czasem cyklu stanowiska. OEE uwzględnia dostępność, wydajność i jakość w przyjętym modelu obliczeniowym.</div>
+            </article>
+        </section>
+        <footer>Obliczenia wykonywane lokalnie w przeglądarce. Strona nie wymaga serwera ani bazy danych.</footer>
+    </main>
+    <script src="script.js">
+    </script>
+</body>
+</html>

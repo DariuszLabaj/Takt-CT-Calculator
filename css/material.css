@@ -1,0 +1,1021 @@
+/* =========================================================
+   Material Design – Design Tokens
+   ========================================================= */
+
+:root
+{
+    /* Core colors */
+    --md-primary: #6750a4;
+    --md-on-primary: #ffffff;
+
+    --md-secondary: #625b71;
+    --md-on-secondary: #ffffff;
+
+    --md-tertiary: #7d5260;
+    --md-on-tertiary: #ffffff;
+
+    --md-error: #b3261e;
+    --md-on-error: #ffffff;
+
+    --md-background: #fef7ff;
+    --md-on-background: #1c1b1f;
+
+    --md-surface: #ffffff;
+    --md-on-surface: #1c1b1f;
+
+    --md-surface-variant: #e7e0ec;
+    --md-on-surface-variant: #49454f;
+
+    --md-outline: #79747e;
+
+    /* Typography */
+    --md-font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+    --md-display-small: 36px;
+    --md-headline-medium: 28px;
+    --md-title-large: 22px;
+    --md-title-medium: 16px;
+    --md-body-medium: 14px;
+    --md-label-large: 14px;
+
+    /* Shape */
+    --md-radius-small: 4px;
+    --md-radius-medium: 12px;
+    --md-radius-large: 16px;
+
+    /* Motion */
+    --md-motion-fast: 120ms cubic-bezier(.2,0,0,1);
+    --md-motion-standard: 200ms cubic-bezier(.2,0,0,1);
+
+    /* Elevation shadows */
+    --md-elevation-1: 0 1px 2px rgba(0,0,0,.12);
+    --md-elevation-2: 0 2px 4px rgba(0,0,0,.14);
+    --md-elevation-3: 0 4px 8px rgba(0,0,0,.16);
+}
+
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+*
+{
+    box-sizing: border-box;
+}
+
+html, body
+{
+    margin: 0;
+    font-family: var(--md-font-family);
+    background: var(--md-background);
+    color: var(--md-on-background);
+}
+
+body {
+  padding-bottom: 44px;
+}
+
+h1
+{
+    font-size: var(--md-headline-medium);
+    font-weight: 500;
+    margin: 0 0 16px 0;
+}
+
+h2
+{
+    font-size: var(--md-title-large);
+    font-weight: 500;
+    margin: 0 0 12px 0;
+}
+
+p
+{
+    font-size: var(--md-body-medium);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   App Bar
+   ========================================================= */
+
+.md-app-bar
+{
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+    box-shadow: var(--md-elevation-2);
+}
+
+.md-app-bar__title
+{
+    font-size: var(--md-title-large);
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   Layout
+   ========================================================= */
+
+.md-container
+{
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+.md-grid
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+
+/* =========================================================
+   Card
+   ========================================================= */
+
+.md-card
+{
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+    border-radius: var(--md-radius-large);
+    box-shadow: var(--md-elevation-1);
+    padding: 20px;
+    transition: box-shadow var(--md-motion-standard);
+}
+
+.md-card:hover
+{
+    box-shadow: var(--md-elevation-3);
+}
+
+.md-card__title
+{
+    font-size: var(--md-title-medium);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.md-button
+{
+    --_bg: transparent;
+    --_color: var(--md-primary);
+    --_border: transparent;
+
+    appearance: none;
+    border: none;
+    border-radius: 999px;
+    height: 40px;
+    padding: 0 24px;
+
+    font-size: var(--md-label-large);
+    font-weight: 500;
+    letter-spacing: .1px;
+
+    cursor: pointer;
+    background: var(--_bg);
+    color: var(--_color);
+    border: 1px solid var(--_border);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background var(--md-motion-fast),
+        box-shadow var(--md-motion-fast),
+        transform var(--md-motion-fast);
+}
+
+.md-button:active
+{
+    transform: scale(.97);
+}
+
+.md-button--filled
+{
+    --_bg: var(--md-primary);
+    --_color: var(--md-on-primary);
+    box-shadow: var(--md-elevation-1);
+}
+
+.md-button--filled:hover
+{
+    box-shadow: var(--md-elevation-2);
+}
+
+.md-button--outlined
+{
+    --_color: var(--md-primary);
+    --_border: var(--md-outline);
+}
+
+.md-button--text
+{
+    padding: 0 12px;
+}
+
+
+/* =========================================================
+   Text Field
+   ========================================================= */
+
+.md-text-field
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.md-text-field label
+{
+    font-size: 12px;
+    color: var(--md-on-surface-variant);
+}
+
+.md-text-field input
+{
+    height: 40px;
+    padding: 0 12px;
+
+    border-radius: var(--md-radius-small);
+    border: 1px solid var(--md-outline);
+    outline: none;
+
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+
+    font-size: var(--md-body-medium);
+
+    transition: border var(--md-motion-fast), box-shadow var(--md-motion-fast);
+}
+
+.md-text-field input:focus
+{
+    border-color: var(--md-primary);
+    box-shadow: 0 0 0 1px var(--md-primary);
+}
+
+
+/* =========================================================
+   Switch
+   ========================================================= */
+
+.md-switch
+{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.md-switch input
+{
+    display: none;
+}
+
+.md-switch__track
+{
+    width: 36px;
+    height: 20px;
+    background: var(--md-surface-variant);
+    border-radius: 999px;
+    position: relative;
+    transition: background var(--md-motion-fast);
+}
+
+.md-switch__thumb
+{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--md-surface);
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform var(--md-motion-fast), background var(--md-motion-fast);
+    box-shadow: var(--md-elevation-1);
+}
+
+.md-switch input:checked + .md-switch__track
+{
+    background: var(--md-primary);
+}
+
+.md-switch input:checked + .md-switch__track .md-switch__thumb
+{
+    background: var(--md-on-primary);
+    transform: translateX(16px);
+}
+
+
+/* =========================================================
+   Utility
+   ========================================================= */
+
+.md-stack
+{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.md-row
+{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+   List
+   ========================================================= */
+
+.md-list
+{
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--md-radius-large);
+    overflow: hidden;
+}
+
+.md-list-item
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+
+    border-bottom: 1px solid var(--md-surface-variant);
+
+    cursor: pointer;
+    transition: background var(--md-motion-fast);
+}
+
+.md-list-item:last-child
+{
+    border-bottom: none;
+}
+
+.md-list-item:hover
+{
+    background: var(--md-surface-variant);
+}
+
+.md-list-item__text
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.md-list-item__title
+{
+    font-size: var(--md-body-medium);
+    font-weight: 500;
+}
+
+.md-list-item__subtitle
+{
+    font-size: 12px;
+    color: var(--md-on-surface-variant);
+}
+
+
+/* =========================================================
+   Toggle (checkbox style)
+   ========================================================= */
+
+.md-toggle
+{
+    position: relative;
+    width: 40px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.md-toggle input
+{
+    display: none;
+}
+
+.md-toggle-track
+{
+    position: absolute;
+    inset: 0;
+    background: var(--md-surface-variant);
+    border-radius: 999px;
+    transition: background var(--md-motion-fast);
+}
+
+.md-toggle-thumb
+{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+    background: var(--md-surface);
+    box-shadow: var(--md-elevation-1);
+
+    transition: transform var(--md-motion-fast), background var(--md-motion-fast);
+}
+
+.md-toggle input:checked + .md-toggle-track
+{
+    background: var(--md-primary);
+}
+
+.md-toggle input:checked + .md-toggle-track .md-toggle-thumb
+{
+    background: var(--md-on-primary);
+    transform: translateX(16px);
+}
+
+
+/* =========================================================
+   Progress bar
+   ========================================================= */
+
+.md-progress
+{
+    height: 6px;
+    width: 100%;
+
+    background: var(--md-surface-variant);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.md-progress__value
+{
+    height: 100%;
+    width: 0%;
+
+    background: var(--md-primary);
+    border-radius: inherit;
+
+    transition: width var(--md-motion-standard);
+}
+
+
+/* =========================================================
+   Indeterminate progress (loading bar)
+   ========================================================= */
+
+.md-progress--indeterminate .md-progress__value
+{
+    width: 40%;
+    animation: md-progress-indeterminate 1.2s infinite ease-in-out;
+}
+
+@keyframes md-progress-indeterminate
+{
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(250%); }
+}
+
+
+/* =========================================================
+   Circular loading spinner
+   ========================================================= */
+
+.md-spinner
+{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    border: 4px solid var(--md-surface-variant);
+    border-top-color: var(--md-primary);
+
+    animation: md-spin 0.9s linear infinite;
+}
+
+@keyframes md-spin
+{
+    to { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   Alert / banner cards
+   ========================================================= */
+
+.md-alert
+{
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+
+    padding: 12px 16px;
+    border-radius: var(--md-radius-medium);
+
+    background: var(--md-surface-variant);
+    color: var(--md-on-surface);
+
+    border-left: 4px solid var(--md-outline);
+}
+
+.md-alert__content
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.md-alert__title
+{
+    font-weight: 500;
+    font-size: var(--md-body-medium);
+}
+
+.md-alert__text
+{
+    font-size: 12px;
+    color: var(--md-on-surface-variant);
+}
+
+
+/* ---- variants ---- */
+
+.md-alert--info
+{
+    border-left-color: var(--md-primary);
+}
+
+.md-alert--success
+{
+    border-left-color: #2e7d32;
+}
+
+.md-alert--warning
+{
+    border-left-color: #ed6c02;
+}
+
+.md-alert--error
+{
+    border-left-color: var(--md-error);
+}
+
+
+/* =========================================================
+   Snackbar / toast
+   ========================================================= */
+
+.md-snackbar
+{
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+
+    min-width: 280px;
+    max-width: 90vw;
+
+    background: var(--md-on-surface);
+    color: var(--md-surface);
+
+    padding: 14px 16px;
+    border-radius: var(--md-radius-medium);
+    box-shadow: var(--md-elevation-3);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity var(--md-motion-standard),
+        transform var(--md-motion-standard);
+}
+
+.md-snackbar--show
+{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.md-snackbar__message
+{
+    font-size: var(--md-body-medium);
+}
+
+.md-snackbar__action
+{
+    background: none;
+    border: none;
+    padding: 0;
+
+    font-size: var(--md-label-large);
+    font-weight: 500;
+
+    color: var(--md-primary);
+    cursor: pointer;
+}
+/* =========================================================
+   Status strip / global machine status bar
+   ========================================================= */
+
+.md-status-strip
+{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    font-size: var(--md-body-medium);
+    font-weight: 500;
+
+    color: var(--md-on-primary);
+    background: var(--md-primary);
+
+    box-shadow: var(--md-elevation-2);
+
+    z-index: 1000;
+}
+
+/* main label */
+.md-status-strip__label
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* right side info (optional) */
+.md-status-strip__details
+{
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   Status variants
+   ========================================================= */
+
+.md-status-strip--ok
+{
+    background: #2e7d32;
+}
+
+.md-status-strip--warning
+{
+    background: #ed6c02;
+}
+
+.md-status-strip--error
+{
+    background: var(--md-error);
+}
+
+.md-status-strip--info
+{
+    background: var(--md-primary);
+}
+
+/* =========================================================
+   File input (Material style)
+   ========================================================= */
+
+.md-file-field
+{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.md-file-field label
+{
+    font-size: 12px;
+    color: var(--md-on-surface-variant);
+}
+
+.md-file-field__control
+{
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.md-file-input
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.md-file-display
+{
+    flex: 1;
+
+    height: 40px;
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: var(--md-radius-small);
+    border: 1px solid var(--md-outline);
+
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+
+    font-size: var(--md-body-medium);
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    transition:
+        border var(--md-motion-fast),
+        box-shadow var(--md-motion-fast);
+}
+
+.md-file-field__control:focus-within .md-file-display
+{
+    border-color: var(--md-primary);
+    box-shadow: 0 0 0 1px var(--md-primary);
+}
+
+.md-file-button
+{
+    flex-shrink: 0;
+}
+
+/* disabled state */
+
+.md-file-input:disabled ~ .md-file-display
+{
+    opacity: 0.6;
+}
+
+/* =========================================================
+   Select / Combo box
+   ========================================================= */
+
+.md-select-field
+{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.md-select-field label
+{
+    font-size: 12px;
+    color: var(--md-on-surface-variant);
+}
+
+.md-select
+{
+    appearance: none;
+
+    height: 40px;
+    padding: 0 36px 0 12px;
+
+    border-radius: var(--md-radius-small);
+    border: 1px solid var(--md-outline);
+
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+
+    font-size: var(--md-body-medium);
+    font-family: inherit;
+
+    outline: none;
+    cursor: pointer;
+
+    transition:
+        border var(--md-motion-fast),
+        box-shadow var(--md-motion-fast);
+}
+
+.md-select-field
+{
+    position: relative;
+}
+
+/* strzałka */
+
+.md-select-field::after
+{
+    content: "▾";
+    position: absolute;
+    right: 12px;
+    top: 18px;
+
+    pointer-events: none;
+    font-size: 2rem;
+    color: var(--md-on-surface-variant);
+}
+
+.md-select:focus
+{
+    border-color: var(--md-primary);
+    box-shadow: 0 0 0 1px var(--md-primary);
+}
+
+
+/* =========================================================
+   Data table (Material style)
+   ========================================================= */
+
+.md-table
+{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--md-surface);
+    color: var(--md-on-surface);
+
+    font-size: var(--md-body-medium);
+}
+
+.md-table thead th
+{
+    text-align: left;
+    font-weight: 500;
+
+    padding: 10px 12px;
+
+    color: var(--md-on-surface-variant);
+
+    border-bottom: 1px solid var(--md-outline);
+}
+
+.md-table tbody td
+{
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--md-surface-variant);
+}
+
+.md-table tbody tr:hover
+{
+    background: var(--md-surface-variant);
+}
+
+/* numeric / right aligned */
+
+.md-table .right
+{
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* small helper when table is inside card */
+
+.md-card .md-table
+{
+    margin-top: 8px;
+}
+
+.md-textarea
+{
+    padding: 0 12px;
+
+    border-radius: var(--md-radius-small);
+    border: 1px solid var(--md-outline);
+    outline: none;
+
+    font-size: var(--md-body-medium);
+
+    transition: border var(--md-motion-fast), box-shadow var(--md-motion-fast);
+
+    resize: vertical;
+    min-height: 90px;
+}
+
+.md-field__label{
+  font-size: 12px;
+  color: var(--md-on-surface-variant);
+}
+
+.md-form-actions
+{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.md-fieldset
+{
+    border: 1px solid var(--md-outline, #ccc);
+    border-radius: 12px;
+    padding: 12px 12px 10px;
+}
+
+.md-fieldset > legend
+{
+    padding: 0 6px;
+    font-size: 0.8rem;
+    color: var(--md-on-surface-variant, #666);
+}
+
+.md-checkbox-list
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 6px 12px;
+    margin-top: 4px;
+}
+
+.md-checkbox-list label
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.md-checkbox-list input[type="checkbox"]
+{
+    accent-color: var(--md-primary);
+}
+
+/* =========================================================
+   Tick-box (ładny checkbox do zadań)
+   ========================================================= */
+
+.md-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+}
+
+.md-check input {
+    display: none;
+}
+
+.md-check__box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--md-primary);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+/* Ptaszek */
+.md-check__box::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    border-right: 2px solid var(--md-surface);
+    border-bottom: 2px solid var(--md-surface);
+    transform: rotate(45deg) scale(0);
+    bottom: 4px;
+    left: 5px;
+    transition: transform 0.2s ease-out;
+}
+
+/* Zaznaczone */
+.md-check input:checked + .md-check__box {
+    background: var(--md-primary);
+    border-color: var(--md-primary);
+}
+
+.md-check input:checked + .md-check__box::after {
+    transform: rotate(45deg) scale(1);
+}
